@@ -1,0 +1,99 @@
+{% extends "base.html"%}
+{% load i18n cms_tags  portafolio_menu thumbnail %}
+{% block extrahead %}
+<!--accordion menu -->
+	<link rel="stylesheet" href="{{MEDIA_URL}}js/accordion/accordion.css" />
+	<script type="text/javascript" src="{{MEDIA_URL}}js/accordion/chili-1.7.pack.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/accordion/jquery.easing.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/accordion/jquery.dimensions.js"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/accordion/jquery.accordion.js"></script>
+<!-- jCarousel core stylesheet -->
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}js/carousel/jquery.jcarousel.css" />
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}js/carousel/skin_casos.css" />
+	<script type="text/javascript" src="{{MEDIA_URL}}js/carousel/jquery.jcarousel.pack.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		// simple accordion with special markup
+		$('#navigation').accordion({
+			'active': false,
+			'header': '.head',
+			'navigation': true,
+			'event': 'click',
+			'fillSpace': false,
+			'animated': 'easeslide',
+			'autoheight': false
+			
+		});
+        $('#mycarousel').jcarousel({"scroll":1});
+	});
+	</script>
+{% endblock %}
+{% block right-header %}
+<div class="rightContent">
+    <div id="menuExtras">
+	</div>
+ </div>
+{% endblock %}
+
+{% block content %}
+	{% block menu_casos %}
+		{% portafolio_menu_client proyect %}
+	{% endblock %}
+
+<div class="rightColCasos">
+	<div class="rightColCasosContainer">
+		<section id="carrouselCasosContainer">
+			<div class=" jcarousel-skin-ie7Casos">
+					<div class="jcarousel-container jcarousel-container-horizontal" id="mycarousel" style="display: block;"> 
+						<div class="jcarousel-prev jcarousel-prev-horizontal jcarousel-prev-disabled jcarousel-prev-disabled-horizontal" style="display: block;" disabled="true">
+						</div>
+						<div class="jcarousel-next jcarousel-next-horizontal" style="display: block;" disabled="false">
+						</div>
+						<div class="jcarousel-clip jcarousel-clip-horizontal">
+							<ul id="mycarousel" class="jcarousel-list jcarousel-list-horizontal" style="width: 1835px; left: 0px;">
+								{% for i in proyect.images.all|dictsort:'sequence' %}
+								<li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-5 jcarousel-item-5-horizontal" jcarouselindex="{{forloop.counter}}">
+								<a href="#">
+								{% thumbnail i.image "360x194" crop="center" as img %}
+									<img border="0" width="{{ img.width }}" height="{{ img.height }}" alt="" src="{{img.url }}">
+								{% endthumbnail %}
+									</a>
+								</li> 
+								{%endfor%}
+							</ul>
+					</div> 
+				</div>
+			</div>
+		</section><!--carrouselCasosContainer  -->
+		<section id="textosCasosContainer">
+			<article>
+				<div id="textosCasos">
+					<h2>{{ proyect.service.name }}</h2>
+						<h1>{{proyect.name}}</h1>
+						<h3>{{ proyect.country.name }}</h3>
+						<p class="resumenCasos">
+							{{proyect.description_short|safe }}
+							<p>
+								{{proyect.description_long|safe }}
+							</p>
+						<a href="{{proyect.url}}" target="_blank">{{proyect.get_url}}</a>
+				</div><!--textosCasos -->
+				</article>
+	
+			<aside>
+					<div id="socialesCasos">
+						<p>
+						{% if proyect.twitter%}
+						<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via={{proyect.twitter}}"" data-related="{{ proyect.name }}" data-lang="en">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> 
+						{% endif %}   
+						</p>
+						{%if proyect.facebook_like%}
+						<script src="http://connect.facebook.net/es_LA/all.js#xfbml=1"></script><fb:like href="{{ proyect.facebook_like }}" show_faces="false" id="megusta" width="120" layout="button_count" ></fb:like> 
+						{% endif %}
+
+					</div><!--socialesCasos -->
+			</aside>
+		</section><!--textosCasosContainer  -->
+	</div><!--rightColCasosContainer  -->
+</div>	
+{% endblock %}

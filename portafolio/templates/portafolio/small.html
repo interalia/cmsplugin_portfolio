@@ -1,0 +1,50 @@
+{%load thumbnail %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Casos</title>
+
+<!-- estilos sitio -->
+
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/flexible.css" media="all" />
+    
+<link rel="stylesheet" href="{{MEDIA_URL}}js/imageflow/imageflow.css" type="text/css" />
+<script type="text/javascript" src="{{MEDIA_URL}}js/imageflow/imageflow.js"></script>
+<script type="text/javascript">
+domReady(function()
+{
+	var imgf = new ImageFlow();
+	imgf.init({ 
+				ImageFlowID:'target', 
+				onClick: function() {
+					 window.open('{% url portafolio-proyect proyect.slug %}', '_top');
+				}	
+				});
+});
+</script>
+
+</head>
+
+<body style="background-color: #FFF">
+
+<div id="overContainer">
+
+	<span class="overServicio">{{proyect.service}}</span><br />
+	<span class="overProyecto"><a href="{% url  portafolio-proyect  proyect.slug %}">{{ proyect.name }}</a></span><br />
+	<span class="overPais">{{ proyect.country.name }}</span><br /><br /> 
+
+<div id="target" class="imageflow">
+  {% for image in proyect.images.all|dictsort:"sequence" %}
+			{% thumbnail image.image "360x194" crop="center" as img %}
+			<img src="{{ img.url }}"  width="{{ img.width }}" height="{{ img.height}}" alt="" />
+			{% endthumbnail %}
+  {% endfor %}
+
+</div>  
+     
+
+</div><!--overContainer -->
+
+
+</body>
+</html>
