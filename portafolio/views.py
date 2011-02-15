@@ -16,7 +16,7 @@ def proyect(request, slug):
                               extra_context = { 'proyect':p })
 
 def show_small(request):
-    slug = request.GET.get("slug","")
+    slug = request.GET.get("slug",None)
     p = get_object_or_404(Proyect, slug = slug)
     return direct_to_template(request, "portafolio/small.html", 
                               extra_context = { 'proyect':p })
