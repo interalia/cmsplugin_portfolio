@@ -57,7 +57,7 @@ class Image(models.Model):
     class Meta:
         ordering = ("sequence",)
 
-class PortafolioPlugin(CMSPlugin):
-    portafolio = models.ManyToManyField(Proyect)
+class PortfolioPlugin(CMSPlugin):
+    portfolio = models.ManyToManyField(Proyect)
 
 
