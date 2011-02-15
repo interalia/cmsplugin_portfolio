@@ -4,6 +4,6 @@ from cms.apphook_pool import apphook_pool
 
 class PortaFolioApp(CMSApp):
     name = _("Portafolio")
-    urls = ["portafolio.urls"]
+    urls = ["portfolio.urls"]
 
 apphook_pool.register(PortaFolioApp)
