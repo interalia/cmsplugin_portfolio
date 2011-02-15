@@ -23,6 +23,7 @@ class ProyectAdmin(admin.ModelAdmin):
     }
     list_display = ("name", "sequence",)
     list_editable = ( "sequence", )
+    search_fields = ['name']
     class Media:
         js = (
         "js/jquery-1.4.3.min.js",
