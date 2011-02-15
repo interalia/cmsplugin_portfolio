@@ -1,0 +1,40 @@
+{% load i18n cms_tags  portafolio_menu thumbnail %}
+	{% block menu_casos %}
+		{% portafolio_menu_client proyect %}
+	{% endblock %}
+
+			<div>
+			<ul>
+				{% for i in proyect.images.all|dictsort:'sequence' %}
+						<li >
+						<a href="#">
+						{% thumbnail i.image "360x194" crop="center" as img %}
+						<img border="0" width="{{ img.width }}" height="{{ img.height }}" alt="" src="{{img.url }}">
+					{% endthumbnail %}
+						</a>
+					</li> 
+					{%endfor%}
+				</ul>
+				</div> 
+				<div>
+					<h2>{{ proyect.service.name }}</h2>
+						<h1>{{proyect.name}}</h1>
+						<h3>{{ proyect.country.name }}</h3>
+						<p>
+							{{proyect.description_short|safe }}
+							<p>
+								{{proyect.description_long|safe }}
+							</p>
+						<a href="{{proyect.url}}" target="_blank">{{proyect.get_url}}</a>
+				</div>
+					<div id="socialesCasos">
+						<p>
+						{% if proyect.twitter%}
+						<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via={{proyect.twitter}}"" data-related="{{ proyect.name }}" data-lang="en">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> 
+						{% endif %}   
+						</p>
+						{%if proyect.facebook_like%}
+						<script src="http://connect.facebook.net/es_LA/all.js#xfbml=1"></script><fb:like href="{{ proyect.facebook_like }}" show_faces="false" id="megusta" width="120" layout="button_count" ></fb:like> 
+						{% endif %}
+
+					</div>
