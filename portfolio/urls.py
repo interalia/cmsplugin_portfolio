@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    url(r"^$", "portafolio.views.index", name="portafolio-index"),
-    url(r"^small/$", "portafolio.views.show_small", name="portafolio-small"),
-    url(r"^redirect/$", "portafolio.views.redirect", name="portafolio-redirect"),
-    url(r"^detail/(?P<slug>[-\w]+)/$", "portafolio.views.proyect", name="portafolio-proyect"),
+    url(r"^$", "portfolio.views.index", name="portfolio-index"),
+    url(r"^small/$", "portfolio.views.show_small", name="portfolio-small"),
+    url(r"^redirect/$", "portfolio.views.redirect", name="portfolio-redirect"),
+    url(r"^detail/(?P<slug>[-\w]+)/$", "portfolio.views.proyect", name="portfolio-proyect"),
 )

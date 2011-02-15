@@ -1,5 +1,5 @@
 {% load thumbnail %}
-
+{% if instance.portafolio.all %}
 {% for p in instance.portafolio.all|dictsort:"sequence" %}
     <a href="{% url portafolio-proyect p.slug %}">
 		  <div class="moduloFoto"> 
@@ -28,3 +28,5 @@
 			  </div>
 	</a>
 {% endfor %}
+
+{% endif %}
