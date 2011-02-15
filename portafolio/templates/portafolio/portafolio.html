@@ -1,79 +1,30 @@
 {% load thumbnail %}
 
-<!--
 {% for p in instance.portafolio.all|dictsort:"sequence" %}
-<article id="{{p.id}}m">
-			<div class="modulo" style="height:120px; width:250px;">
-		        <div class="moduloContent" style="width:250px;">
-                    <a href="{%url portafolio-proyect p.slug %}">
-							<div class="button" id="id-{{p.slug}}"></div>
-					</a>
-					  <div class="moduloFoto" style="width:100%"> 
-					  {% for image in p.images.all %}
-						  {%if image.main %} 
-								{% thumbnail image.image "250x110" crop="center" as img %}
-								<a href="{% url portafolio-proyect p.slug %}">
-                                    <img border="0" src="{{ img.url }}" width="{{ img.width }}" height="{{img.height }}" title="Proyecto" />
-                                </a> 
-								{% endthumbnail %}
-						  {% endif %}
-					  {% endfor %}
-					  </div>
-					  <div class="moduloTexto" style="position:relative;top:-50px;
-                          background: none repeat scroll 0 0 #FFFFFF;
-                          border:solid #0099CC 1px; margin-left:auto;
-                          margin-right:auto; padding-top:5px; padding-left:5px;
-                          height:auto; width:230px; display:none; margin:5px;">
-						  <b>{{p.service.name}}</b>
-						  <b><a href="{% url portafolio-proyect p.slug
-                                  %}">{{p.name}}</a></b>
-						  <b>{{p.country.name}}</b>
-						  {% spaceless%}
-						<p class="liga" style="font-size:10px;">
-							<a href="{% url portafolio-proyect p.slug %}">
-							         {{p.description_short|striptags|linebreaksbr|truncatewords:"10" }}
-							</a>
-						</p>
-						{% endspaceless%}
-					  </div>
-			    </div>
-		  </div>
-</article> 
-      {% endfor %}
--->
+    <a href="{% url portafolio-proyect p.slug %}">
+		  <div class="moduloFoto"> 
+		  {% for image in p.images.all %}
+			  {%if image.main %} 
+					{% thumbnail image.image "180x97" crop="center" as img %}
+					<a href="{# url portafolio-proyect p.slug #}">
+						    <img border="0" src="{{ img.url }}" width="{{ img.width }}" height="{{img.height }}" title="Proyecto" />
+					</a> 
+					{% endthumbnail %}
+				  {% endif %}
+			  {% endfor %}
+			  </div>
+			  <div id="moduloTexto">
+				  <h2>{{p.service.name}}</h2>
+				  <h1><a href="{# url portafolio-proyect p.slug #}">{{p.name}}</a></h1>
+				  <h3>{{p.country.name}}</h3>
+				  {% spaceless%}
+				<p class="liga">
+					<a href="{# url portafolio-proyect p.slug #}">
 
-{% for p in instance.portafolio.all|dictsort:"sequence" %}
-<article id="{{p.id}}m">
-			<div class="modulo">
-		        <div class="moduloContent">
-                    <a href="{%url portafolio-proyect p.slug %}">
-							<div class="button" id="id-{{p.slug}}"></div>
+						 {{p.description_short|striptags|linebreaksbr|truncatewords:"29" }}
 					</a>
-					  <div class="moduloFoto"> 
-					  {% for image in p.images.all %}
-						  {%if image.main %} 
-								{% thumbnail image.image "180x97" crop="center" as img %}
-								<a href="{% url portafolio-proyect p.slug %}">
-                                    <img border="0" src="{{ img.url }}" width="{{ img.width }}" height="{{img.height }}" title="Proyecto" />
-                                </a> 
-								{% endthumbnail %}
-						  {% endif %}
-					  {% endfor %}
-					  </div>
-					  <div id="moduloTexto">
-						  <h2>{{p.service.name}}</h2>
-						  <h1><a href="{% url portafolio-proyect p.slug %}">{{p.name}}</a></h1>
-						  <h3>{{p.country.name}}</h3>
-						  {% spaceless%}
-						<p class="liga">
-							<a href="{% url portafolio-proyect p.slug %}">
-
-							         {{p.description_short|striptags|linebreaksbr|truncatewords:"29" }}
-							</a>
-						</p>
-						{% endspaceless%}
-					  </div>
-			    </div>
-		  </div>
-</article> 
+				</p>
+				{% endspaceless%}
+			  </div>
+	</a>
 {% endfor %}
