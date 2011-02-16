@@ -10,6 +10,7 @@ from django.conf.urls.defaults import patterns
     
 class ImageInline(AdminInlineImageMixin,admin.TabularInline):
     model =Image
+    can_delete = True
     def formfield_for_dbfield(self,db_field, **kwargs):
         if isinstance(db_field, models.ImageField):
             return db_field.formfield( widget = AdminImageWidget)
