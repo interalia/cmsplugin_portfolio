@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.contrib import admin
 
-from models import Service, Client, Proyect, Image, Country
+from models import Service, Client, Proyect, Image, Country,LineAction
 from cms.plugins.text.widgets.wymeditor_widget import WYMEditor
 from sorl.thumbnail.admin import AdminInlineImageMixin, AdminImageWidget
 from django.conf.urls.defaults import patterns
@@ -36,4 +36,4 @@ admin.site.register(Service)
 admin.site.register(Client)
 admin.site.register(Country)
 admin.site.register(Proyect,ProyectAdmin)
-
+admin.site.register(LineAction)

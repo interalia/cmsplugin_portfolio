@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.db import models
 from cms.models import CMSPlugin
 from django.core.exceptions import ValidationError
@@ -19,8 +20,16 @@ class Country(models.Model):
     def __unicode__(self):
         return self.name
 
+class LineAction(models.Model):
+    code = models.CharField(max_length=3)
+    description = models.TextField()
+    def __unicode__(self):
+        return self.code
+
+
 class Proyect(models.Model):
     service = models.ForeignKey(Service, related_name="proyects")
+    line_action = models.ManyToManyField(LineAction)
     country = models.ForeignKey(Country, related_name="proyects")
     client = models.ForeignKey(Client, related_name ="proyects")
     name = models.CharField(max_length= 100)
