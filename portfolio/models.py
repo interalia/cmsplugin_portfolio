@@ -41,8 +41,8 @@ class Proyect(models.Model):
     twitter = models.CharField(max_length=20, help_text="twitt via ..", blank = True, null = True)
     facebook_like = models.URLField( blank =True, null = True)
     sequence = models.IntegerField()
-    seo_description=models.CharField(max_length=400,null=True)
-    seo_keywords=models.CharField(max_length=400,null=True)
+    seo_description=models.TextField(null=True)
+    seo_keywords=models.TextField(null=True)
 
     @models.permalink
     def get_absolute_url(self):
