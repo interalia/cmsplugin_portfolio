@@ -1,11 +1,12 @@
 {% load thumbnail %}
 {% if instance.portafolio.all %}
 {% for p in instance.portafolio.all|dictsort:"sequence" %}
-    <a href="{% url portafolio-proyect p.slug %}">
+   <a href="{% url portafolio-proyect p.slug %}">
 		  <div class="moduloFoto"> 
 		  {% for image in p.images.all %}
 			  {%if image.main %} 
-					{% thumbnail image.image "180x97" crop="center" as img %}
+        {% thumbnail image.image "180x97" crop="center" as img %}
+          hola hola hola hola hola
 					<a href="{# url portafolio-proyect p.slug #}">
 						    <img border="0" src="{{ img.url }}" width="{{ img.width }}" height="{{img.height }}" title="Proyecto" />
 					</a> 

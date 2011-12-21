@@ -8,6 +8,7 @@ from models import Proyect
 
 def index(request):
     p = Proyect.objects.all()[0]
+    print "si entro a index de portfolio"  
     return direct_to_template(request, "portfolio/index.html", 
                               extra_context = { 'proyect':p })
 def proyect(request, slug):
